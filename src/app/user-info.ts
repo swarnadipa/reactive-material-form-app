@@ -3,8 +3,8 @@ export interface UserInfo {
     name: string;
     gender: string;
     dob: string;
-    aadharNo: number;
-    panNo: number;
+    aadharNo: string;
+    panNo: string;
     phoneNo: string;
     married: boolean;
     contactName: string;

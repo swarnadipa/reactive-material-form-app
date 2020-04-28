@@ -17,7 +17,7 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     /* Fetch all user info from localstorage to display in table */
-         this.userInfo = this.userInfoService.getAllUsers();
+      this.userInfo = this.userInfoService.getAllUsers();
   }
 
   /* Navigate to add/edit user view */

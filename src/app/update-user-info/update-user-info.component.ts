@@ -110,7 +110,7 @@ export class UpdateUserInfoComponent implements OnInit {
 
   public getAadharNoError() {
     return this.contactForm.get('aadharNo').hasError('required') ? 'Required Field' :
-      this.contactForm.get('aadharNo').hasError('alphanumeric') ? 'Aadhar No. should contain only alphanumeric' :
+      this.contactForm.get('aadharNo').hasError('alphanumeric') ? 'Aadhar no. should only contain alphanumeric value' :
         'Aadhar no. should be of 12 characters';
   }
 
