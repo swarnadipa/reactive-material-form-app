@@ -12,4 +12,14 @@
         height: 50px;
         font-size: 18px;
     }
+
+    &__no-data {
+        border: 1px solid darkgrey;
+        width: 250px;
+        height: 50px;
+        margin: 50px auto;
+        padding: 30px;
+        font-size: 26px;
+        border-radius: 5px;        
+    }
 }

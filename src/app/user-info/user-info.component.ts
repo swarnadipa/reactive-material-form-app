@@ -16,8 +16,11 @@ export class UserInfoComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.userInfo = this.userInfoService.getAllUsers();
+    /* Fetch all user info from localstorage to display in table */
+         this.userInfo = this.userInfoService.getAllUsers();
   }
+
+  /* Navigate to add/edit user view */
 
   public addUser() {
     this.router.navigate(['/add-edit']);
