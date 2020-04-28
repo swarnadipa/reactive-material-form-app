@@ -1,0 +1,108 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">Edit/Add Profile</span>
+</mat-toolbar>
+<div class="update-user-info-wrapper" novalidate>
+    <form [formGroup]="contactForm" class="form">
+        <div class="update-user-info-wrapper__row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <input matInput placeholder="Name" formControlName="name">
+                <mat-error *ngIf="!contactForm.controls['name'].valid && 
+                contactForm.controls['name'].touched">
+                    Required Field
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                    <mat-option *ngFor="let gender of genders" [value]="gender">
+                        {{gender}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="!contactForm.controls['gender'].valid && 
+                contactForm.controls['gender'].touched">
+                    Required Field
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <mat-label>Married</mat-label>
+                <mat-select formControlName="married">
+                    <mat-option *ngFor="let status of statusValues" [value]="status">
+                        {{status}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="!contactForm.controls['married'].valid && 
+                contactForm.controls['married'].touched">
+                    Required Field
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <mat-label>{{contactName}}</mat-label>
+                <input matInput placeholder="" formControlName="contactName">
+                <mat-error *ngIf="!contactForm.controls['contactName'].valid && 
+                contactForm.controls['contactName'].touched">
+                    some error
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <input matInput placeholder="DOB" formControlName="dob">
+                <mat-error *ngIf="!contactForm.controls['dob'].valid && 
+                contactForm.controls['dob'].touched">
+                    Date of birth should be in either dd/mm/yyyy or dd-mm-yyyy format
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <input matInput placeholder="Phone Number" formControlName="phoneNo">
+                <mat-error *ngIf="!contactForm.controls['phoneNo'].valid && 
+                contactForm.controls['phoneNo'].touched">
+                    Phone number should be in the format e.g. (308)-135-7895 or 308-135-7895
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <input matInput placeholder="Aadhar Number" formControlName="aadharNo">
+                <mat-error *ngIf="!contactForm.controls['aadharNo'].valid && 
+                contactForm.controls['aadharNo'].touched">
+                    {{getAadharNoError()}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <input matInput placeholder="PAN Number" formControlName="panNo">
+                <mat-error *ngIf="!contactForm.controls['panNo'].valid && 
+                contactForm.controls['panNo'].touched">
+                    {{getPanNoError()}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <button mat-raised-button color="primary" (click)="saveUserInfo(contactForm.value)" [disabled]=""
+                class="form-element update-user-info-wrapper__btn update-user-info-wrapper__btn-save">Save</button>
+            <button mat-raised-button color="warn" (click)="resetForm()"
+                class="form-element update-user-info-wrapper__btn update-user-info-wrapper__btn-cancel">Cancel</button>
+        </div>
+
+    </form>
+</div>
