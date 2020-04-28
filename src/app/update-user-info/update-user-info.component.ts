@@ -97,7 +97,6 @@ export class UpdateUserInfoComponent implements OnInit {
   }
 
   public saveUserInfo(value: any) {
-    debugger;
     if (!value.uuid) {
       value.uuid = this.generateUUID();
       this.userInfoService.storeUserInfo(value);

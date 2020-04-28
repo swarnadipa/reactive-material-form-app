@@ -16,8 +16,6 @@ export class UserInfoComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    console.log('in user info');
-    debugger;
     this.userInfo = this.userInfoService.getAllUsers();
   }
 
