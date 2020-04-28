@@ -11,19 +11,20 @@ describe('UserInfoComponent', () => {
     navigate: jasmine.createSpy('navigate')
   };
   let user = {
-    name: 'Chandler Bing',
+    name: 'Monica Geller',
     gender: 'f',
     dob: '09-05-1989',
     aadharNo: '99282736362',
     panNo: '27777200',
-    contactName: 'Monica Geller',
-    married: true,
+    fatherName: 'NA',
+    husbandName: 'Chandler Bing',
+    married: 'married',
     phoneNo: '801-715-8273'
   };
   let mockUserInfoService = {
     getAllUsers : jasmine.createSpy('getAllUsers').and.returnValue([user])
   }
-  beforeEach(async(() => {
+  beforeEach(async(() => {''
     TestBed.configureTestingModule({
       declarations: [UserInfoComponent],
       providers: [

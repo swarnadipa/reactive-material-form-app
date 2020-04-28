@@ -19,9 +19,14 @@
                 <td mat-cell *matCellDef="let element"> {{element.married}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="contactName">
-                <th mat-header-cell *matHeaderCellDef> Contact Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.contactName}} </td>
+            <ng-container matColumnDef="fatherName">
+                <th mat-header-cell *matHeaderCellDef> Father's Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.fatherName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="husbandName">
+                <th mat-header-cell *matHeaderCellDef> Husband's Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.husbandName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="dob">

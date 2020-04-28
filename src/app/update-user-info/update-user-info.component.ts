@@ -11,9 +11,9 @@ import { UserInfoService } from '../user-info.service';
 export class UpdateUserInfoComponent implements OnInit {
   public contactForm: FormGroup;
   public userUuid: string;
-  public contactName = "Father's Name";
   public genders = ['Male', 'Female', 'Other'];
-  public statusValues = [true, false];
+  public statusValues = ['married', 'not married'];
+  public showHusbandName = false;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
@@ -38,7 +38,13 @@ export class UpdateUserInfoComponent implements OnInit {
     this.contactForm.get('gender').valueChanges.subscribe(val => {
       if (val) {
         const maritalStatus = this.contactForm.get('married').value;
-        this.contactName = maritalStatus && val.toLowerCase() === 'female' ? "Husband's Name" : "Father's Name";
+        if (maritalStatus.toLowerCase() === 'married' && val.toLowerCase() === 'female') {
+          this.showHusbandName = true;
+          this.contactForm.get('fatherName').setValue('NA');          
+        } else {
+          this.showHusbandName = false;
+          this.contactForm.get('fatherName').setValue('');
+        }
       }
     });
 
@@ -47,7 +53,13 @@ export class UpdateUserInfoComponent implements OnInit {
     this.contactForm.get('married').valueChanges.subscribe(val => {
       if (val) {
         const gender = this.contactForm.get('gender').value;
-        this.contactName = gender.toLowerCase() === 'female' && val ? "Husband's Name" : "Father's Name";
+        if (gender && val.toLowerCase() === 'married') {
+          this.showHusbandName = true;
+          this.contactForm.get('fatherName').setValue('NA');
+        } else {
+          this.showHusbandName = false;
+          this.contactForm.get('fatherName').setValue('');
+        }
       }
     });
   }
@@ -59,12 +71,13 @@ export class UpdateUserInfoComponent implements OnInit {
       name: user.name,
       gender: user.gender,
       married: user.married,
-      contactName: user.contactName,
       dob: user.dob,
       phoneNo: user.phoneNo,
       aadharNo: user.aadharNo,
       panNo: user.panNo,
-      uuid: user.uuid
+      uuid: user.uuid,
+      husbandName: user.husbandName,
+      fatherName: user.fatherName
     })
   }
 
@@ -74,20 +87,20 @@ export class UpdateUserInfoComponent implements OnInit {
     const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
     const dobPattern = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     this.contactForm = this.formBuilder.group({
-      'name': [null, [Validators.required, Validators.maxLength(20)]],
-      'gender': [null, [Validators.required]],
-      'married': [null, [Validators.required]],
-      'contactName': [null, [Validators.required, Validators.maxLength(20)]],
-      'dob': [null, [Validators.required, Validators.pattern(dobPattern)]],
-      'phoneNo': [null, [Validators.required, Validators.pattern(phoneNumberPattern)]],
-      'aadharNo': [null, [Validators.required, this.checkAadharNo]],
-      'panNo': [null, [Validators.required, this.checkPanNo]],
-      'uuid': [null, []]
+      'name': ['', [Validators.required, Validators.maxLength(20)]],
+      'gender': ['', [Validators.required]],
+      'married': ['', [Validators.required]],
+      'dob': ['', [Validators.required, Validators.pattern(dobPattern)]],
+      'phoneNo': ['', [Validators.required, Validators.pattern(phoneNumberPattern)]],
+      'aadharNo': ['', [Validators.required, this.checkAadharNo]],
+      'panNo': ['', [Validators.required, this.checkPanNo]],
+      'uuid': ['', []],
+      'fatherName': ['', [Validators.maxLength(20)]],
+      'husbandName': ['', [Validators.maxLength(20)]]
     });
   }
 
-  /* Custom validation for Aadhar No. 
-  checks if field contains only alphanumeric values and is of length 12 */
+  /* Custom validation for Aadhar No. checks if field contains only alphanumeric values and is of length 12 */
 
   private checkAadharNo(control) {
     const alphaNumeric = /[^a-z\d]/i;
@@ -96,8 +109,7 @@ export class UpdateUserInfoComponent implements OnInit {
       aadharValue && aadharValue.match(alphaNumeric) ? { 'alphanumeric': true } : null;
   }
 
-  /* Custom validation for PAN No. 
-  checks if field contains only alphanumeric values and is of length 10 */
+  /* Custom validation for PAN No. checks if field contains only alphanumeric values and is of length 10 */
 
   private checkPanNo(control) {
     const alphaNumeric = /[^a-z\d]/i;

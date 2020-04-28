@@ -43,27 +43,39 @@
             </mat-form-field>
         </div>
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
-                <mat-label>{{contactName}}</mat-label>
-                <input matInput placeholder="" formControlName="contactName">
-                <mat-error *ngIf="!contactForm.controls['contactName'].valid && 
-                contactForm.controls['contactName'].touched">
+                <input matInput placeholder="Date of Birth" formControlName="dob">
+                <mat-error *ngIf="!contactForm.controls['dob'].valid && 
+                contactForm.controls['dob'].touched">
                     Required Field
                 </mat-error>
             </mat-form-field>
         </div>
 
-        <div class="row">
+        
+
+        <div class="row" *ngIf="showHusbandName">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
-                <input matInput placeholder="DOB" formControlName="dob">
-                <mat-error *ngIf="!contactForm.controls['dob'].valid && 
-                contactForm.controls['dob'].touched">
-                    Date of birth should be in either dd/mm/yyyy or dd-mm-yyyy format
+                <mat-label>Husband's Name</mat-label>
+                <input matInput placeholder="Husband's Name" formControlName="husbandName">
+                <mat-error *ngIf="!contactForm.controls['husbandName'].valid && 
+                contactForm.controls['husbandName'].touched">
+                    Required Field
                 </mat-error>
             </mat-form-field>
         </div>
 
+        <div class="row" *ngIf="!showHusbandName">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <mat-label>Father's Name</mat-label>
+                <input matInput placeholder="Father's Name" formControlName="fatherName">
+                <mat-error *ngIf="!contactForm.controls['husbandName'].valid && 
+                contactForm.controls['fatherName'].touched">
+                    Required Field
+                </mat-error>
+            </mat-form-field>
+        </div>
 
         <div class="row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
@@ -98,12 +110,11 @@
         </div>
 
         <div class="row">
-            <button mat-raised-button color="primary" (click)="saveUserInfo(contactForm.value)" 
-            [disabled]="!contactForm.valid"
+            <button mat-raised-button color="primary" (click)="saveUserInfo(contactForm.value)"
+                [disabled]="!contactForm.valid"
                 class="form-element update-user-info-wrapper__btn update-user-info-wrapper__btn-save">Save</button>
             <button mat-raised-button color="warn" (click)="resetForm()"
                 class="form-element update-user-info-wrapper__btn update-user-info-wrapper__btn-cancel">Cancel</button>
         </div>
-
     </form>
 </div>

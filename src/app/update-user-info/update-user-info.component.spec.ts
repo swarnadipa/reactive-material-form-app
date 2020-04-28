@@ -50,7 +50,7 @@ describe('UpdateUserInfoComponent', () => {
   });
 
   it('should create form and inititalise with default values', () => {
-    expect(component.contactForm.get('name').value).toEqual(null);
+    expect(component.contactForm.get('name').value).toEqual('');
   });
 
   it('should reset all form fields to empty values', () => {
@@ -80,12 +80,14 @@ describe('UpdateUserInfoComponent', () => {
 
   it('should detect change in gender field and display contact name as husband name if gender = "f" and married = true and father name otherwise', () => {
     component.contactForm.get('gender').setValue('female');
-    component.contactForm.get('married').setValue(true);
+    component.contactForm.get('married').setValue('married');
     fixture.detectChanges();
-    expect(component.contactName).toEqual("Husband's Name");
+    expect(component.showHusbandName).toBeTruthy();
+    expect(component.contactForm.get('fatherName').value).toEqual('NA');
     component.contactForm.get('gender').setValue('male');
     fixture.detectChanges();
-    expect(component.contactName).toEqual("Father's Name");
+    expect(component.showHusbandName).toBeFalsy();
+    expect(component.contactForm.get('fatherName').value).toEqual('');
   });
 
 });

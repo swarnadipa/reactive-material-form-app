@@ -6,6 +6,8 @@ export interface UserInfo {
     aadharNo: string;
     panNo: string;
     phoneNo: string;
-    married: boolean;
-    contactName: string;
+    married: string;
+    fatherName: string;
+    husbandName: string;
 }
+
