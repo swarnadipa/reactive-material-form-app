@@ -53,7 +53,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.contactForm.get('married').valueChanges.subscribe(val => {
       if (val) {
         const gender = this.contactForm.get('gender').value;
-        if (gender && val.toLowerCase() === 'married') {
+        if (gender.toLowerCase() === 'female' && val.toLowerCase() === 'married') {
           this.showHusbandName = true;
           this.contactForm.get('fatherName').setValue('NA');
         } else {
