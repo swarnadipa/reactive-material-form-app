@@ -9,5 +9,6 @@ export interface UserInfo {
     married: string;
     fatherName: string;
     husbandName: string;
+    state: string;
 }
 

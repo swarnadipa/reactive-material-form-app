@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserInfoComponent implements OnInit {
   public userInfo: UserInfo[];
   public displayedColumns: string[] = ['name', 'gender', 'married', 'fatherName', 'husbandName', 'dob',
-    'phoneNo', 'aadharNo', 'panNo', 'action'];
+    'phoneNo', 'aadharNo', 'panNo', 'state', 'action'];
   constructor(private userInfoService: UserInfoService,
     private router: Router) { }
 

@@ -49,6 +49,11 @@
                 <td mat-cell *matCellDef="let element"> {{element.panNo}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> State residing in </th>
+                <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element">

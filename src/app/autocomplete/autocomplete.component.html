@@ -1,0 +1,5 @@
+<div class="autocomplete-wrapper">
+    <div class="autocomplete-wrapper__option" (click)="updateControlVal(option)" *ngFor="let option of data | searchPipe: getSearchValue()">
+        {{option}}
+    </div>
+</div>

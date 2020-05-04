@@ -14,12 +14,16 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { SearchPipePipe } from './search-pipe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserInfoComponent,
-    UpdateUserInfoComponent
+    UpdateUserInfoComponent,
+    AutocompleteComponent,
+    SearchPipePipe
   ],
   imports: [
     BrowserModule,

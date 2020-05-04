@@ -1,0 +1,18 @@
+.autocomplete-wrapper {
+    position: absolute;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    top: 32px;
+    z-index: 1;
+    width: 100%;
+
+    &__option {
+        padding: 10px;
+        font-family: sans-serif;
+        &:hover {
+            background: #cccccc;
+        }
+    }
+}

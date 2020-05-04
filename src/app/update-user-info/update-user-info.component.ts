@@ -14,12 +14,15 @@ export class UpdateUserInfoComponent implements OnInit {
   public genders = ['Male', 'Female', 'Other'];
   public statusValues = ['married', 'not married'];
   public showHusbandName = false;
+  public statesList = [];
+  public showPanel = false;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
+    this.statesList = ['Kerala', 'West Bengal', 'Tamil Nadu', 'Haryana', 'Andhra Pradesh', 'Uttar Pradesh'];
     /* Create and initialise form for the first time */
     if (!this.contactForm) {
       this.createUserInfoForm();
@@ -77,7 +80,8 @@ export class UpdateUserInfoComponent implements OnInit {
       panNo: user.panNo,
       uuid: user.uuid,
       husbandName: user.husbandName,
-      fatherName: user.fatherName
+      fatherName: user.fatherName,
+      state: user.state
     })
   }
 
@@ -96,7 +100,8 @@ export class UpdateUserInfoComponent implements OnInit {
       'panNo': ['', [Validators.required, this.checkPanNo]],
       'uuid': ['', []],
       'fatherName': ['', [Validators.maxLength(20)]],
-      'husbandName': ['', [Validators.maxLength(20)]]
+      'husbandName': ['', [Validators.maxLength(20)]],
+      'state': ['', [Validators.required]]
     });
   }
 
@@ -158,4 +163,13 @@ export class UpdateUserInfoComponent implements OnInit {
   private generateUUID(): string {
     return Math.random().toString(36).slice(2);
   }
+
+  public togglePanel(val: any): void {    
+    if(!val) {
+      this.showPanel = !this.showPanel;
+    } else {
+      this.showPanel = val;
+    }     
+  }
+
 }

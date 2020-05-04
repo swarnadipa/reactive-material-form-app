@@ -2,7 +2,7 @@
     <span class="fill-remaining-space">Edit/Add Profile</span>
 </mat-toolbar>
 <div class="update-user-info-wrapper" novalidate>
-    <form [formGroup]="contactForm" class="form">
+    <form [formGroup]="contactForm" class="form" autocomplete="new-password">
         <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <input matInput placeholder="Name" formControlName="name">
@@ -108,6 +108,21 @@
                 </mat-error>
             </mat-form-field>
         </div>
+
+        <div class="row">
+            <mat-form-field class="form-element update-user-info-wrapper__form-field">
+                <input matInput placeholder="State Residing in" formControlName="state" 
+                autocomplete="new-password" (click)="togglePanel(null)">
+                <app-autocomplete *ngIf="showPanel" [data]="statesList" 
+                [parentControl]="contactForm.get('state')" (optionSelected)="togglePanel($event)"></app-autocomplete>
+                <mat-error *ngIf="!contactForm.controls['state'].valid && 
+                contactForm.controls['state'].touched">
+                    Required
+                </mat-error>    
+            </mat-form-field>
+        </div>
+
+        
 
         <div class="row">
             <button mat-raised-button color="primary" (click)="saveUserInfo(contactForm.value)"
