@@ -1,6 +1,6 @@
 
 <div class="autocomplete-panel" [ngClass]="{'autocomplete-panel__show': showPanel}" (clickOutside)="closePanel()">
-    <div class="autocomplete-panel__option" (click)="updateControlVal(option)" *ngFor="let option of data | searchPipe: getSearchValue()">
+    <div class="autocomplete-panel__option" (click)="updateControlVal(option)" *ngFor="let option of data | search: getSearchValue()">
         {{option}}
     </div>
 </div>

@@ -15,7 +15,7 @@ import { UpdateUserInfoComponent } from './update-user-info/update-user-info.com
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { SearchPipePipe } from './search-pipe.pipe';
+import { SearchPipe } from './search.pipe';
 import { clickOutsideDirective } from './click-outside.directive';
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { clickOutsideDirective } from './click-outside.directive';
     UserInfoComponent,
     UpdateUserInfoComponent,
     AutocompleteComponent,
-    SearchPipePipe,
+    SearchPipe,
     clickOutsideDirective
   ],
   imports: [
