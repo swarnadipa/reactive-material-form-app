@@ -1,4 +1,4 @@
-.autocomplete-wrapper {
+.autocomplete-panel {
     position: absolute;
     max-height: 300px;
     overflow-y: auto;
@@ -7,6 +7,10 @@
     top: 32px;
     z-index: 1;
     width: 100%;
+    display: none;
+    &__show {
+        display: block;
+    }
 
     &__option {
         padding: 10px;

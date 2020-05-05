@@ -53,7 +53,7 @@
             </mat-form-field>
         </div>
 
-        
+
 
         <div class="row" *ngIf="showHusbandName">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
@@ -111,18 +111,15 @@
 
         <div class="row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
-                <input matInput placeholder="State Residing in" formControlName="state" 
-                autocomplete="new-password" (click)="togglePanel(null)">
-                <app-autocomplete *ngIf="showPanel" [data]="statesList" 
-                [parentControl]="contactForm.get('state')" (optionSelected)="togglePanel($event)"></app-autocomplete>
+                <input matInput placeholder="State Residing in" formControlName="state" autocomplete="new-password"
+                    (click)="togglePanel()" id="stateInput" #stateInput>
+                <app-autocomplete [data]="statesList" [parentControl]="contactForm.get('state')"></app-autocomplete>
                 <mat-error *ngIf="!contactForm.controls['state'].valid && 
                 contactForm.controls['state'].touched">
                     Required
-                </mat-error>    
+                </mat-error>
             </mat-form-field>
         </div>
-
-        
 
         <div class="row">
             <button mat-raised-button color="primary" (click)="saveUserInfo(contactForm.value)"

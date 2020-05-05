@@ -16,14 +16,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { SearchPipePipe } from './search-pipe.pipe';
-
+import { clickOutsideDirective } from './click-outside.directive';
 @NgModule({
   declarations: [
     AppComponent,
     UserInfoComponent,
     UpdateUserInfoComponent,
     AutocompleteComponent,
-    SearchPipePipe
+    SearchPipePipe,
+    clickOutsideDirective
   ],
   imports: [
     BrowserModule,

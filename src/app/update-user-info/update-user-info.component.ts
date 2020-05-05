@@ -164,12 +164,7 @@ export class UpdateUserInfoComponent implements OnInit {
     return Math.random().toString(36).slice(2);
   }
 
-  public togglePanel(val: any): void {    
-    if(!val) {
+  public togglePanel(): void {   
       this.showPanel = !this.showPanel;
-    } else {
-      this.showPanel = val;
-    }     
   }
-
 }

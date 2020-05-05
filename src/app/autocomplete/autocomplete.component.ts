@@ -7,14 +7,21 @@ import { FormGroup, AbstractControl } from '@angular/forms';
   styleUrls: ['./autocomplete.component.scss']
 })
 export class AutocompleteComponent implements OnInit {
-  @Input('data') data : any;
+  @Input('data') data: any;
   @Input('parentControl') parentControl: AbstractControl;
   @Output() optionSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
   private searchValue;
+  private isOptionSelected = false;
+  public showPanel: boolean;
   constructor() { }
 
   ngOnInit(): void {
+
     this.parentControl.valueChanges.subscribe(val => {
+      this.showPanel = !this.isOptionSelected;
+      if (this.isOptionSelected) {
+        this.isOptionSelected = false;
+      }
       this.searchValue = val;
     });
   }
@@ -24,8 +31,12 @@ export class AutocompleteComponent implements OnInit {
   }
 
   public updateControlVal(val) {
+    this.isOptionSelected = true;
     this.parentControl.patchValue(val);
-    this.optionSelected.emit(false);
+  }
+
+  public closePanel() {
+    this.showPanel = false;
   }
 
 }
