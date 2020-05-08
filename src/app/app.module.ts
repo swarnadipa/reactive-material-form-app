@@ -17,6 +17,10 @@ import { MatOptionModule } from '@angular/material/core';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { SearchPipe } from './search.pipe';
 import { clickOutsideDirective } from './click-outside.directive';
+import { TabsComponent } from './tabs/tabs.component';
+import { TabComponent } from './tab/tab.component';
+import { DynamicTabsDirective } from './dynamic-tabs.directive';
+import { UserComponent } from './user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,11 @@ import { clickOutsideDirective } from './click-outside.directive';
     UpdateUserInfoComponent,
     AutocompleteComponent,
     SearchPipe,
-    clickOutsideDirective
+    clickOutsideDirective,
+    TabsComponent,
+    TabComponent,
+    DynamicTabsDirective,
+    UserComponent
   ],
   imports: [
     BrowserModule,

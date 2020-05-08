@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { UserInfoService } from '../user-info.service';
-import { UserInfo } from '../user-info';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-info',
@@ -9,20 +6,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-  public userInfo: UserInfo[];
+  @Input('users') userInfo;
+  @Output() addUser = new EventEmitter<any>();
+  @Output() editUser = new EventEmitter<any>();
   public displayedColumns: string[] = ['name', 'gender', 'married', 'fatherName', 'husbandName', 'dob',
     'phoneNo', 'aadharNo', 'panNo', 'state', 'action'];
-  constructor(private userInfoService: UserInfoService,
-    private router: Router) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    /* Fetch all user info from localstorage to display in table */
-      this.userInfo = this.userInfoService.getAllUsers();
-  }
-
-  /* Navigate to add/edit user view */
-
-  public addUser() {
-    this.router.navigate(['/add-edit']);
-  }
+  ngOnInit(): void {}
 }

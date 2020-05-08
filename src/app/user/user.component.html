@@ -1,0 +1,12 @@
+<div class="user-container">
+  <app-tabs>
+    <app-tab [tabTitle]="'Users'">
+      <app-user-info [users]="users" (addUser)="onAddUser()" (editUser)="onEditUser($event)"></app-user-info>
+    </app-tab>
+  </app-tabs>
+
+  <ng-template let-user="user" #userEdit>
+    <app-update-user-info [user]="user" (saveUser)="onUserFormSubmit($event)"></app-update-user-info>
+  </ng-template>
+
+</div>

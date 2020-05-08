@@ -1,6 +1,6 @@
 .user-info-wrapper {
     &__table {
-        width: 80%;
+        width: 100%;
         margin: 10px auto;
     }
     &__add-btn {
@@ -22,4 +22,9 @@
         font-size: 26px;
         border-radius: 5px;        
     }
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    height: 55px;
 }

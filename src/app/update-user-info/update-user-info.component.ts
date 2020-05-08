@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
+import { UserInfo } from '../user-info';
 
 @Component({
   selector: 'app-update-user-info',
@@ -9,6 +9,9 @@ import { UserInfoService } from '../user-info.service';
   styleUrls: ['./update-user-info.component.scss']
 })
 export class UpdateUserInfoComponent implements OnInit {
+  @Input() user: UserInfo;
+  @Output() saveUser = new EventEmitter<any>();
+
   public contactForm: FormGroup;
   public userUuid: string;
   public genders = ['Male', 'Female', 'Other'];
@@ -16,25 +19,13 @@ export class UpdateUserInfoComponent implements OnInit {
   public showHusbandName = false;
   public statesList = [];
   public showPanel = false;
-  constructor(private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private userInfoService: UserInfoService) { }
-
-  ngOnInit(): void {
-    this.statesList = ['Kerala', 'West Bengal', 'Tamil Nadu', 'Haryana', 'Andhra Pradesh', 'Uttar Pradesh'];
-    /* Create and initialise form for the first time */
-    if (!this.contactForm) {
+  constructor(private formBuilder: FormBuilder) { 
       this.createUserInfoForm();
     }
 
-    /* Retreive user unique identification uuid from route param for updating info */
-    this.route.params.subscribe(params => {
-      this.userUuid = params && params.uuid;
-      if (this.userUuid) {
-        this.autoFillForm(); // pre populate form fields for user
-      }
-    });
+  ngOnInit(): void {
+    this.statesList = ['Kerala', 'West Bengal', 'Tamil Nadu', 'Haryana', 'Andhra Pradesh', 'Uttar Pradesh'];
+    this.autoFillForm();
 
     /* Listen to changes in gender field and check if it is F and married is true, then
     show contact name as husband's name else Father's name */
@@ -69,19 +60,19 @@ export class UpdateUserInfoComponent implements OnInit {
 
   /* pre populate form fields while editing based on user info */
   private autoFillForm(): void {
-    const user = this.userInfoService.getUserInfo(this.userUuid);
+    debugger;
     this.contactForm.setValue({
-      name: user.name,
-      gender: user.gender,
-      married: user.married,
-      dob: user.dob,
-      phoneNo: user.phoneNo,
-      aadharNo: user.aadharNo,
-      panNo: user.panNo,
-      uuid: user.uuid,
-      husbandName: user.husbandName,
-      fatherName: user.fatherName,
-      state: user.state
+      name: this.user.name,
+      gender: this.user.gender,
+      married: this.user.married,
+      dob: this.user.dob,
+      phoneNo: this.user.phoneNo,
+      aadharNo: this.user.aadharNo,
+      panNo: this.user.panNo,
+      uuid: this.user.uuid,
+      husbandName: this.user.husbandName,
+      fatherName: this.user.fatherName,
+      state: this.user.state
     })
   }
 
@@ -137,31 +128,6 @@ export class UpdateUserInfoComponent implements OnInit {
     return this.contactForm.get('panNo').hasError('required') ? 'Required Field' :
       this.contactForm.get('panNo').hasError('alphanumeric') ? 'Pan no. should only contain alphanumeric value' :
         'PAN no. should be of 10 characters';
-  }
-
-
-  /* Saves user info in localstorage */
-
-  public saveUserInfo(value: any): void {
-    if (!value.uuid) {
-      value.uuid = this.generateUUID();
-      this.userInfoService.storeUserInfo(value);
-    } else {
-      this.userInfoService.storeUserInfo(value, true);
-    }
-    this.router.navigate(['/user-info']);
-  }
-
-  /* reset form to empty */
-
-  public resetForm(): void {
-    this.contactForm.reset();
-  }
-
-  /* Generate random alphanumeric string to create unique UUID */
-
-  private generateUUID(): string {
-    return Math.random().toString(36).slice(2);
   }
 
   public togglePanel(): void {   
