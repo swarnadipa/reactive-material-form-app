@@ -10,7 +10,7 @@
             </mat-form-field>
         </div>
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <mat-label>Gender</mat-label>
                 <mat-select formControlName="gender">
@@ -25,7 +25,7 @@
             </mat-form-field>
         </div>
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <mat-label>Married</mat-label>
                 <mat-select formControlName="married">
@@ -52,7 +52,7 @@
 
 
 
-        <div class="row" *ngIf="showHusbandName">
+        <div class="update-user-info-wrapper__row" *ngIf="showHusbandName">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <mat-label>Husband's Name</mat-label>
                 <input matInput placeholder="Husband's Name" formControlName="husbandName">
@@ -63,7 +63,7 @@
             </mat-form-field>
         </div>
 
-        <div class="row" *ngIf="!showHusbandName">
+        <div class="update-user-info-wrapper__row" *ngIf="!showHusbandName">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <mat-label>Father's Name</mat-label>
                 <input matInput placeholder="Father's Name" formControlName="fatherName">
@@ -74,7 +74,7 @@
             </mat-form-field>
         </div>
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <input matInput placeholder="Phone Number" formControlName="phoneNo">
                 <mat-error *ngIf="!contactForm.controls['phoneNo'].valid && 
@@ -85,7 +85,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <input matInput placeholder="Aadhar Number" formControlName="aadharNo">
                 <mat-error *ngIf="!contactForm.controls['aadharNo'].valid && 
@@ -96,7 +96,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <input matInput placeholder="PAN Number" formControlName="panNo">
                 <mat-error *ngIf="!contactForm.controls['panNo'].valid && 
@@ -106,7 +106,7 @@
             </mat-form-field>
         </div>
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <mat-form-field class="form-element update-user-info-wrapper__form-field">
                 <input matInput placeholder="State Residing in" formControlName="state" autocomplete="new-password"
                     (click)="togglePanel()" id="stateInput" #stateInput>
@@ -118,7 +118,7 @@
             </mat-form-field>
         </div>
 
-        <div class="row">
+        <div class="update-user-info-wrapper__row">
             <button mat-raised-button color="primary" (click)="saveUser.emit(contactForm.value)"
                 [disabled]="!contactForm.valid"
                 class="form-element update-user-info-wrapper__btn update-user-info-wrapper__btn-save">Save</button>
